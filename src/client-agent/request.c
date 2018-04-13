@@ -223,7 +223,7 @@ void * req_receiver(__attribute__((unused)) void * arg) {
 
             // Send data
 
-            if (send(node->sock, node->buffer, node->length, 0) != (ssize_t)node->length) {
+            if (OS_SendSecureTCP(node->sock, node->length, node->buffer) != (ssize_t)node->length) {
                 merror("send(): %s", strerror(errno));
                 strcpy(buffer, "err Send data");
                 length = strlen(buffer);
